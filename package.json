@@ -1,25 +1,39 @@
 {
-    "name": "bomb-master",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "parcel src/index.html",
-        "build": "rimraf dist && parcel build src/index.html"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "parcel-bundler": "^1.12.4",
-        "postcss-nested": "^4.2.1",
-        "rimraf": "^3.0.2"
-    },
-    "dependencies": {
-        "jquery": "^3.4.1",
-        "popper.js": "^1.16.1",
-        "react": "^16.12.0",
-        "react-dom": "^16.12.0",
-        "react-router-dom": "^5.1.2"
-    }
+  "name": "keep-talking-handbook",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "start": "node ./dist/server/entry.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^8.0.1",
+    "@astrojs/node": "^11.1.6",
+    "@astrojs/react": "^6.0.6",
+    "@astrojs/sitemap": "^3.6.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.1"
+  },
+  "allowScripts": {
+    "esbuild": true
+  }
 }

@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { DIFFICULTY, EXTERNAL_RESOURCES, MANUAL_URL, SITE } from '../consts'
+
+const showDrafts = import.meta.env.SHOW_DRAFTS === '1'
+const modules = (await getCollection('modules', ({ data }) => showDrafts || !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+)
+---
+
+<BaseLayout>
+  <div class="mx-auto max-w-3xl px-4 py-12">
+    <section class="mb-14">
+      <h1 class="text-4xl font-semibold tracking-tight">Memorize the manual.</h1>
+      <div class="prose mt-5">
+        <p>
+          <a href={MANUAL_URL} target="_blank" rel="noopener">Keep Talking and Nobody Explodes</a> is
+          a game about a bomb only one person can see and a manual only everyone else can read. It is
+          at its best when the defuser is talking fast and the experts are flipping pages — and it
+          gets a lot better when nobody has to flip pages at all.
+        </p>
+        <p>
+          I memorized the manual. Not because it makes you win, but because the game turns into a
+          different and better thing when the lookup disappears: you stop reading rules at each other
+          and start actually communicating. A module that took forty seconds takes eight.
+        </p>
+        <p>
+          This site is what I worked out along the way. One page per module, each with the specific
+          tricks I used — where I chunked a table, which mnemonic stuck, what I got wrong for weeks
+          before it clicked. Where it helps, there is a drill on the page to practice against.
+        </p>
+        <p>
+          <strong>People memorize differently.</strong> Treat everything here as one worked example
+          rather than the method. If my mnemonic for Who's on First does nothing for you, the useful
+          part is the shape of it — a sentence whose first letters carry the list — not the sentence
+          itself. Steal the structure, write your own words.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-14">
+      <h2 class="text-sm font-semibold uppercase tracking-wide mb-4" style="color: var(--text-faint)">
+        The modules
+      </h2>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+        {
+          modules.map((m) => (
+            <li>
+              <a
+                href={`/modules/${m.id}/`}
+                class="block h-full rounded-lg border p-3.5 transition-colors"
+                style="border-color: var(--border); background: var(--bg-elev)"
+              >
+                <div class="flex items-baseline justify-between gap-2">
+                  <h3 class="font-medium">{m.data.title}</h3>
+                  <span class="shrink-0 text-xs" style="color: var(--text-faint)">
+                    {DIFFICULTY[m.data.difficulty].label}
+                  </span>
+                </div>
+                <p class="mt-1 text-sm" style="color: var(--text-muted)">{m.data.summary}</p>
+                {m.data.hasDrill && (
+                  <span class="mt-2 inline-block text-xs" style="color: var(--color-amber)">
+                    Has a drill
+                  </span>
+                )}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="mb-14">
+      <h2 class="text-sm font-semibold uppercase tracking-wide mb-4" style="color: var(--text-faint)">
+        Where to start
+      </h2>
+      <div class="prose">
+        <p>
+          Go in difficulty order, not manual order. Simple Wires and The Button carry most of the
+          early value because they come up constantly. Keypads and Simon Says are next — both are
+          small tables that reward a single good mnemonic.
+        </p>
+        <p>
+          Leave <a href="/modules/whos-on-first/">Who's on First</a> and{' '}
+          <a href="/modules/wire-sequences/">Wire Sequences</a> for last. They are the two that take
+          real time, and doing them first is how people bounce off this entirely.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wide mb-4" style="color: var(--text-faint)">
+        Other resources
+      </h2>
+      <ul class="space-y-2.5">
+        {
+          EXTERNAL_RESOURCES.map((r) => (
+            <li>
+              <a
+                href={r.href}
+                target="_blank"
+                rel="noopener"
+                class="font-medium underline underline-offset-2"
+                style="color: var(--color-amber)"
+              >
+                {r.label}
+              </a>
+              <span class="ml-1.5 text-sm" style="color: var(--text-muted)">
+                {r.note}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-6 text-sm" style="color: var(--text-muted)">
+        Comments, corrections or requests: <a
+          href={`mailto:${SITE.email}`}
+          class="underline underline-offset-2"
+          style="color: var(--color-amber)">{SITE.email}</a
+        >.
+      </p>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,42 @@
+---
+title: Simon Says
+summary: Six colour mappings keyed on a vowel and your strike count. Learn the two zero-strike ones first.
+manualPage: 8
+difficulty: easy
+order: 4
+hasDrill: false
+---
+
+import SimonMappings from '../../components/study/SimonMappings.astro'
+
+The colour you press depends on two things: whether the serial number contains a **vowel**,
+and how many **strikes** you already have. Six tables in all.
+
+Starting out you really only need the two no-strike mappings. If you have a strike you
+already have bigger problems, and you can look those two up.
+
+<SimonMappings />
+
+## How I hold each one
+
+- **Vowel, no strikes** — red and blue swap; green and yellow swap.
+- **No vowel, no strikes** — red, blue and yellow rotate (R→B→Y→R); green stays green.
+- **No vowel, 1 strike** — red stays red and blue stays blue; green and yellow swap.
+- **Vowel, 1 strike** *and* **no vowel, 2 strikes** — the same table: red and yellow swap,
+  blue and green swap.
+- **Vowel, 2 strikes** — rotate counter-clockwise around the module's own layout.
+
+The one genuinely useful structural fact is that **vowel + 1 strike and no-vowel + 2 strikes
+are identical**, so six tables is really five.
+
+> **Correction, September 2026.** An earlier version of this page said the no-vowel,
+> one-strike mapping was a three-way rotation of blue, yellow and green with red fixed. That
+> is wrong — the manual has red *and* blue both fixed, with only green and yellow swapping.
+> If you learned it from this page before now, that is the one to re-check. There is now a
+> test pinning every mapping to the manual so it cannot drift again.
+
+## In game
+
+Say the mapping out loud once before you start pressing. The sequence lengthens by one each
+round and replays from the beginning, so a wrong mapping does not cost you one press — it
+costs you the whole module, repeatedly, until someone notices.

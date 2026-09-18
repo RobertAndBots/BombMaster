@@ -1,0 +1,80 @@
+---
+title: Simple Wires
+summary: Four tables of conditions. Split the cut order from the conditions and both halves get small.
+manualPage: 5
+difficulty: medium
+order: 1
+hasDrill: true
+---
+
+import SimpleWiresDrill from '../../components/drills/SimpleWiresDrill.tsx'
+
+There are five wire colours — **(B)** black, **(U)** blue, **(R)** red, **(W)** white,
+**(Y)** yellow — and five kinds of condition:
+
+- **0C** — no wires of colour C
+- **1C** — exactly one wire of colour C
+- **2C** — *two or more* wires of colour C
+- **LC** — the last wire is colour C
+- the serial number is odd
+
+Note that **B is black and U is blue**. Every mistake I made early on was reading U as
+"unknown" or B as "blue", and it costs you a strike every time.
+
+## Split the cuts from the conditions
+
+This is the whole trick for this module. The manual interleaves "if this, cut that", so it
+reads like twenty separate rules. It isn't. You are only ever asked to cut a wire in a
+specific position, or the last wire of a certain colour — so learn the *sequence of cuts*
+for each wire count first, as a short number:
+
+- **3 wires:** 23 blue 3
+- **4 wires:** red 1142
+- **5 wires:** 4121
+- **6 wires:** 3464
+
+The last cut in each group has no condition attached — it is the "otherwise" case.
+
+Now the conditions. For 4, 5 and 6 wires, the **first** condition always also requires an odd
+serial number, and no other condition ever mentions the serial. So that is one fact, not
+three. The rest:
+
+<div class="scroll-x">
+
+| 3 wires | 4 wires | 5 wires | 6 wires |
+| --- | --- | --- | --- |
+| 0R | 2R | LB | 0Y |
+| LW | LY 0R | 1R 2Y | 1Y 2W |
+| 2U | 1U | 0B | 0R |
+|  | 2Y | | |
+
+</div>
+
+Read a column top to bottom against the cut sequence for that count and the module falls out.
+Six wires, for instance: *no yellow and odd serial → third*, *one yellow and two-plus white →
+fourth*, *no red → sixth*, otherwise *fourth*.
+
+## The 4-wire shortcut
+
+Conditions 2 and 3 for four wires both cut the **first** wire, so you can merge them:
+
+- **2R** → cut the last red
+- **LY 0R** *or* **1U** → cut the first
+- **2Y** → cut the fourth
+- otherwise → cut the second
+
+Which shortens the cut sequence to **red 142**. Fewer things to hold.
+
+## What I kept getting wrong
+
+**2C means two _or more_.** For a long time I read "2Y" on the six-wire column as "exactly
+two yellow" and cut the wrong wire on any module with three. The manual says *more than one*.
+
+## Practice
+
+The drill below does not pick a random bomb and then solve it — it picks which condition
+should fire and builds a module that satisfies that one and defeats every condition above
+it. That matters, because random wires would give you the common cases over and over and you
+would never drill the rules at the bottom of each column.
+
+<SimpleWiresDrill client:visible />

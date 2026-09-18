@@ -1,0 +1,20 @@
+---
+import { DISPLAY_WORDS, POSITIONS } from '../../lib/rules/whos-on-first'
+
+const BLANK = '<   >'
+---
+
+<div class="not-prose my-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
+  {
+    POSITIONS.map((position) => (
+      <div class="rounded border p-3" style="border-color: var(--border); background: var(--bg-elev)">
+        <h4 class="text-xs font-semibold mb-1.5" style="color: var(--color-amber)">{position}</h4>
+        <ul class="text-sm space-y-0.5" style="color: var(--text-muted)">
+          {DISPLAY_WORDS[position].map((word) => (
+            <li>{word === '' ? BLANK : word}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>

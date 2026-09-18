@@ -1,0 +1,57 @@
+---
+title: Complicated Wires
+summary: The manual's Venn diagram flattened into a 4x4 chart, then grouped by instruction.
+manualPage: 13
+difficulty: hard
+order: 8
+hasDrill: false
+---
+
+import ComplicatedWiresChart from '../../components/study/ComplicatedWiresChart.astro'
+import CutGroups from '../../components/study/CutGroups.astro'
+
+The manual gives you a four-set Venn diagram. It is correct and it is unusable under time
+pressure — you end up tracing overlaps with a finger while someone counts down.
+
+It's really a 4x4 table: wire colouring down the side, LED and ★ across the top.
+
+<ComplicatedWiresChart />
+
+## Group by instruction, not by wire
+
+Reading the chart row by row means memorizing sixteen cells. Grouping by the *answer* means
+memorizing five short lists, and it matches how the question arrives in game — you're looking
+at one wire and want one answer.
+
+<CutGroups />
+
+## How I hold each group
+
+**Cut and Don't Cut** are mostly straight memorization, but there's one pairing that sticks:
+
+> Red Star = **Cut**, Blue Star = **Don't cut**
+
+Beyond that, make sure White and White Star are both cut. The Don't-Cuts matter less than
+they look — if no rule applies you shouldn't be cutting anyway — but the memorable one is
+**don't cut when everything is true** (LED Red Blue Star).
+
+**Serial Even** covers wires 1-3: cut when the colour is not white (red, blue, or both) and
+there is no LED and no star. The fourth is covered by the Red Blue rule below.
+
+**Red Blue** is the one that needs its own thought. From Serial Even you already know to cut
+a Red Blue wire on an even serial. If the **LED is on** with no star, still serial-even.
+If there's a **star** with no LED, it becomes parallel port instead.
+
+**Parallel Port and Batteries** are easiest learned together. Both require the **LED on**;
+the star is optional either way. Then:
+
+> Blue = **Parallel Port**, Red = **Batteries**
+
+That covers wires 1-2 of each. Wire 3 of Parallel Port is already handled by the Red Blue
+rule, and wire 3 of Batteries is a genuine exception you just have to know.
+
+## In game
+
+Call out the wire as three facts in a fixed order — colour, LED, star — before you look
+anything up. "Red, no LED, star." Saying them in the same order every time is what stops you
+from missing the star on the one wire where it flips the answer.

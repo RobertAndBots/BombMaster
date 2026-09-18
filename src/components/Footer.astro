@@ -1,0 +1,23 @@
+---
+import { SITE } from '../consts'
+---
+
+<footer class="border-t mt-20" style="border-color: var(--border)">
+  <div
+    class="mx-auto max-w-5xl px-4 py-8 text-sm flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between"
+    style="color: var(--text-faint)"
+  >
+    <p>
+      Made by <a
+        href="https://rcpooley.dev"
+        class="underline underline-offset-2"
+        style="color: var(--text-muted)">Robert Pooley</a
+      >. Not affiliated with Steel Crate Games.
+    </p>
+    <p>
+      <a href={`mailto:${SITE.email}`} class="underline underline-offset-2" style="color: var(--text-muted)"
+        >{SITE.email}</a
+      >
+    </p>
+  </div>
+</footer>

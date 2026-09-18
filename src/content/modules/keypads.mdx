@@ -1,0 +1,44 @@
+---
+title: Keypads
+summary: Six columns of seven occult symbols. Twelve of them give away the column instantly.
+manualPage: 7
+difficulty: medium
+order: 3
+hasDrill: true
+---
+
+import KeypadSets from '../../components/study/KeypadSets.astro'
+import KeypadsDrill from '../../components/drills/KeypadsDrill.tsx'
+
+Six columns, seven symbols each — but only **27 distinct symbols** across those 42 slots. So
+some symbols appear twice and some appear exactly once, and that asymmetry is the module.
+
+## Twelve symbols identify the column on sight
+
+These appear in exactly one column. See any of them and you are done searching:
+
+<KeypadSets show="unique" />
+
+The other fifteen appear in two columns, so they narrow it to a pair and you need a second
+symbol to decide:
+
+<KeypadSets show="shared" />
+
+In practice I scan the four symbols for one from the first list. Most modules have one, and
+when they do the lookup is instant.
+
+## Mnemonics for each column
+
+The symbols have no names the game agrees with, so you have to invent them. What worked for
+me was a sentence per column where each word stands for one symbol **in order** — reciting
+the sentence gives you the press order for free, which is the actual thing being asked.
+
+<KeypadSets show="sets" />
+
+Some of these are a stretch ("Sax-E, not a try, no-mega") and that is fine — a bad pun you
+can't forget beats an elegant one you can. Write your own if mine don't land; the useful part
+is the structure, not my words.
+
+## Practice
+
+<KeypadsDrill client:visible />

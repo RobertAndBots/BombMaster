@@ -1,0 +1,61 @@
+---
+import { SETS, SYMBOL_NAMES, sharedSymbols, uniqueSymbols } from '../../lib/rules/keypads'
+
+type Props = { show?: 'sets' | 'unique' | 'shared' }
+const { show = 'sets' } = Astro.props
+
+const list = show === 'unique' ? uniqueSymbols() : show === 'shared' ? sharedSymbols() : []
+---
+
+{
+  show === 'sets' ? (
+    <div class="not-prose my-4 space-y-4">
+      {SETS.map((set, i) => (
+        <div>
+          <h4 class="text-sm font-semibold mb-1.5">Column {i + 1}</h4>
+          <div class="scroll-x">
+            <div class="flex gap-2 pb-1">
+              {set.symbols.map((symbol, j) => (
+                <figure class="shrink-0 text-center" style="width: 62px">
+                  <img
+                    src={`/symbols/${symbol}.png`}
+                    alt={SYMBOL_NAMES[symbol]}
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                    class="mx-auto rounded border p-1"
+                    style="border-color: var(--border); background: var(--bg-elev-2)"
+                  />
+                  <figcaption class="mt-1 text-xs leading-tight" style="color: var(--color-amber)">
+                    {set.mnemonic[j]}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div class="not-prose my-4 scroll-x">
+      <div class="flex flex-wrap gap-2">
+        {list.map((symbol) => (
+          <figure class="text-center" style="width: 62px">
+            <img
+              src={`/symbols/${symbol}.png`}
+              alt={SYMBOL_NAMES[symbol]}
+              width="48"
+              height="48"
+              loading="lazy"
+              class="mx-auto rounded border p-1"
+              style="border-color: var(--border); background: var(--bg-elev-2)"
+            />
+            <figcaption class="mt-1 text-xs leading-tight" style="color: var(--text-faint)">
+              {SYMBOL_NAMES[symbol]}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  )
+}

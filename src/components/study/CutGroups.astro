@@ -1,0 +1,23 @@
+---
+import { INSTRUCTIONS, combinationsFor, type Instruction } from '../../lib/rules/complicated-wires'
+
+// The chart inverted: for each instruction, which wires produce it. DERIVED
+// from the chart rather than listed again, so the two cannot disagree — the
+// old site maintained both lists by hand.
+const order: Instruction[] = ['C', 'S', 'P', 'B', 'D']
+---
+
+<div class="not-prose my-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+  {
+    order.map((instruction) => (
+      <div class="rounded border p-3" style="border-color: var(--border); background: var(--bg-elev)">
+        <h4 class="text-sm font-semibold mb-1.5" style="color: var(--color-amber)">
+          {INSTRUCTIONS[instruction].label}
+        </h4>
+        <ol class="text-sm space-y-0.5" style="color: var(--text-muted)">
+          {combinationsFor(instruction).map((combo) => <li>{combo}</li>)}
+        </ol>
+      </div>
+    ))
+  }
+</div>

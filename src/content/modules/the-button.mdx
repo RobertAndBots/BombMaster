@@ -1,0 +1,70 @@
+---
+title: The Button
+summary: Six conditions in order, and the actions alternate. One sentence covers the whole module.
+manualPage: 6
+difficulty: easy
+order: 2
+hasDrill: true
+---
+
+import ButtonDrill from '../../components/drills/ButtonDrill.tsx'
+
+The pieces: five button colours (black, blue, red, white, yellow), four labels (Abort,
+Detonate, Hold, Press) and four strip colours (blue, red, white, yellow).
+
+As with [Simple Wires](/modules/simple-wires/), memorize the **actions** and the
+**conditions** separately.
+
+## Actions
+
+The actions alternate, starting with hold:
+
+> hold, press, hold, press, hold, press, hold
+
+That's it. That's the entire action table. If you know which condition fired, you know
+whether to hold by whether its number is odd.
+
+## Conditions
+
+1. Blue, Abort
+2. 2+ batteries, Detonate
+3. White, CAR
+4. 3+ batteries, FRK
+5. Yellow
+6. Red, Hold
+
+The mnemonic I use is just the list said out loud:
+
+> **"Blue abort, 2 det, white car, 3 FRK, yellow, red hold"**
+
+After enough repetitions you won't need a hook for it, but early on I pictured a car blowing
+up for "det white car", and remembered that after **2** you skip a number and land on **3**.
+And **FRK is three letters**, which pins it to the 3.
+
+## Releasing
+
+If you're holding, a strip lights up and you release when the timer shows a particular digit
+in any position:
+
+- **Blue = 4**
+- **Yellow = 5**
+- **Everything else = 1**
+
+Two facts and a default.
+
+## The shortcut worth having
+
+Conditions 2, 4 and 6 are the press-and-release ones, and two of the three need batteries.
+So: **if the bomb has fewer than two batteries, the only thing you have to check is whether
+the button is a red "Hold".** If it is, press and release. If not, hold. You can skip the
+entire table.
+
+Glance at the batteries first and most modules resolve before you've read the label.
+
+## Practice
+
+The batteries and indicators start hidden below, and that's deliberate — on a real bomb they
+are on a different face, so you have to know you need them before you go looking. A drill
+that showed you everything up front would train the wrong reflex.
+
+<ButtonDrill client:visible />

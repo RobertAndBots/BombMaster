@@ -1,0 +1,60 @@
+---
+import { SITE } from '../consts'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+
+type Props = {
+  title?: string
+  description?: string
+  /** Set on module pages so the header can mark the current one. */
+  activeSlug?: string
+}
+
+const { title, description = SITE.description, activeSlug } = Astro.props
+
+const pageTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`
+const canonical = new URL(Astro.url.pathname, Astro.site)
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    {/* Per-page OpenGraph. The whole point of server-rendering these pages is
+        that a link to one module previews as that module, not as the site. */}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title ?? SITE.name} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+
+    {/* Theme before first paint, so a light-mode visitor never sees a dark
+        flash. Kept inline and tiny for that reason. */}
+    <script is:inline>
+      try {
+        const stored = localStorage.getItem('kth-theme')
+        if (stored === 'light') document.documentElement.classList.add('light')
+        else document.documentElement.classList.add('dark')
+      } catch {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+    <Header activeSlug={activeSlug} />
+    <main class="flex-1 w-full">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

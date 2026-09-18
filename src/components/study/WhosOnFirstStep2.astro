@@ -1,0 +1,36 @@
+---
+import { GROUP_1, GROUP_2, MAX_USEFUL_DEPTH, studyList, type ButtonLabel } from '../../lib/rules/whos-on-first'
+
+type Props = { group: 1 | 2; sentences: Record<string, string> }
+const { group, sentences } = Astro.props
+
+// The lists are DERIVED by truncating the full manual lists, not transcribed
+// again — and a test proves the truncation picks the same button as the full
+// list for all 36,036 legal modules.
+const labels = (group === 1 ? GROUP_1 : GROUP_2) as readonly ButtonLabel[]
+const sorted = [...labels].sort((a, b) => a.localeCompare(b))
+---
+
+<div class="not-prose my-4 space-y-2">
+  {
+    sorted.map((label) => {
+      const list = studyList(label)
+      return (
+        <div class="rounded border p-3" style="border-color: var(--border); background: var(--bg-elev)">
+          <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            <h4 class="text-sm font-semibold" style="color: var(--color-amber)">{label}</h4>
+            <p class="text-sm" style="color: var(--text-muted)">{list.join(', ')}</p>
+          </div>
+          {sentences[label] && (
+            <p class="mt-1.5 text-sm italic" style="color: var(--text-faint)">{sentences[label]}</p>
+          )}
+        </div>
+      )
+    })
+  }
+</div>
+
+<p class="text-sm" style="color: var(--text-faint)">
+  Lists stop at the label's own word or after {MAX_USEFUL_DEPTH} entries, whichever comes first —
+  whichever you reach first is always on the module.
+</p>

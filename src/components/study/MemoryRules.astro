@@ -1,0 +1,39 @@
+---
+import { RULES, TOTAL_STAGES, describe, type Digit } from '../../lib/rules/memory'
+
+// Rendered from the same RULES table the drill solves with, so the page can
+// never teach a rule the drill does not enforce.
+const SHORT: Record<string, (r: any) => string> = {
+  position: (r) => `P${r.position}`,
+  label: (r) => `L${r.label}`,
+  stagePosition: (r) => `S${r.stage}P`,
+  stageLabel: (r) => `S${r.stage}L`,
+}
+const displays: Digit[] = [1, 2, 3, 4]
+---
+
+<div class="not-prose my-4 grid grid-cols-2 sm:grid-cols-5 gap-3">
+  {
+    Array.from({ length: TOTAL_STAGES }, (_, i) => i + 1).map((stage) => (
+      <div class="rounded border p-3" style="border-color: var(--border); background: var(--bg-elev)">
+        <h4 class="text-xs font-semibold mb-1.5" style="color: var(--text-faint)">Stage {stage}</h4>
+        <ul class="text-sm space-y-0.5">
+          {
+            displays.map((d) => {
+              const rule = RULES[stage]![d]!
+              return (
+                <li class="flex gap-1.5" title={describe(rule)}>
+                  <span style="color: var(--text-faint)">D{d}</span>
+                  <span aria-hidden="true" style="color: var(--text-faint)">&rarr;</span>
+                  <span class="font-mono font-semibold" style="color: var(--color-amber)">
+                    {SHORT[rule.kind]!(rule)}
+                  </span>
+                </li>
+              )
+            })
+          }
+        </ul>
+      </div>
+    ))
+  }
+</div>

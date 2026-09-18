@@ -1,0 +1,80 @@
+---
+import { getCollection, render } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { DIFFICULTY, manualPage } from '../../consts'
+
+// One static page per module .mdx. Adding a module is adding a file — there is
+// no route list to update, which is what the old site's hand-maintained
+// router.jsx array required.
+export async function getStaticPaths() {
+  const showDrafts = import.meta.env.SHOW_DRAFTS === '1'
+  const modules = await getCollection('modules', ({ data }) => showDrafts || !data.draft)
+  const sorted = modules.sort((a, b) => a.data.order - b.data.order)
+
+  return sorted.map((entry, idx) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      prev: sorted[idx - 1],
+      next: sorted[idx + 1],
+    },
+  }))
+}
+
+const { entry, prev, next } = Astro.props
+const { Content } = await render(entry)
+const { title, summary, manualPage: page, difficulty } = entry.data
+---
+
+<BaseLayout title={title} description={summary} activeSlug={entry.id}>
+  <article class="mx-auto max-w-3xl px-4 py-10">
+    <header class="mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-2 text-xs">
+        <span
+          class="rounded-full border px-2 py-0.5"
+          style="border-color: var(--border-strong); color: var(--text-faint)"
+        >
+          {DIFFICULTY[difficulty].label} to memorize
+        </span>
+        <a
+          href={manualPage(page)}
+          target="_blank"
+          rel="noopener"
+          class="rounded-full border px-2 py-0.5"
+          style="border-color: var(--border-strong); color: var(--text-muted)"
+        >
+          Manual p{page} &#8599;
+        </a>
+      </div>
+      <h1 class="text-3xl font-semibold tracking-tight">{title}</h1>
+      <p class="mt-2 text-lg" style="color: var(--text-muted)">{summary}</p>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <nav
+      class="mt-16 flex flex-col sm:flex-row gap-3 justify-between border-t pt-6 text-sm"
+      style="border-color: var(--border)"
+      aria-label="Module navigation"
+    >
+      {
+        prev ? (
+          <a href={`/modules/${prev.id}/`} style="color: var(--text-muted)">
+            &#8592; {prev.data.title}
+          </a>
+        ) : (
+          <a href="/" style="color: var(--text-muted)">&#8592; All modules</a>
+        )
+      }
+      {
+        next && (
+          <a href={`/modules/${next.id}/`} class="sm:text-right" style="color: var(--text-muted)">
+            {next.data.title} &#8594;
+          </a>
+        )
+      }
+    </nav>
+  </article>
+</BaseLayout>

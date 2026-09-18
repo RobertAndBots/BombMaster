@@ -1,0 +1,60 @@
+---
+import { CHART, COMBOS, INSTRUCTIONS, WIRE_KINDS, WIRE_KIND_LABELS } from '../../lib/rules/complicated-wires'
+
+// Static, so this is an .astro component and ships no JavaScript. The chart is
+// generated from the same CHART the solver uses — the manual's Venn diagram
+// flattened into the 4x4 table it always wanted to be.
+---
+
+<div class="scroll-x not-prose my-4">
+  <table class="w-full text-center text-sm" style="border-collapse: collapse">
+    <thead>
+      <tr>
+        <th class="p-2" style="border: 1px solid var(--border); background: var(--bg-elev-2)"></th>
+        {
+          COMBOS.map((c) => (
+            <th class="p-2 font-medium" style="border: 1px solid var(--border); background: var(--bg-elev-2)">
+              <span class="block text-xs" style={`color: ${c.led ? 'var(--color-amber)' : 'var(--text-faint)'}`}>
+                {c.led ? 'LED on' : 'LED off'}
+              </span>
+              <span class="block text-xs" style={`color: ${c.star ? 'var(--color-amber)' : 'var(--text-faint)'}`}>
+                {c.star ? '★' : 'no ★'}
+              </span>
+            </th>
+          ))
+        }
+      </tr>
+    </thead>
+    <tbody>
+      {
+        WIRE_KINDS.map((kind) => (
+          <tr>
+            <th class="p-2 text-left font-medium" style="border: 1px solid var(--border); background: var(--bg-elev-2)">
+              {WIRE_KIND_LABELS[kind]}
+            </th>
+            {
+              CHART[kind].map((instruction) => (
+                <td class="p-2 font-bold" style="border: 1px solid var(--border)">
+                  <abbr title={INSTRUCTIONS[instruction].blurb} style="text-decoration: none; cursor: help">
+                    {instruction}
+                  </abbr>
+                </td>
+              ))
+            }
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<dl class="not-prose my-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 text-sm">
+  {
+    Object.entries(INSTRUCTIONS).map(([key, v]) => (
+      <div class="flex gap-2">
+        <dt class="font-bold w-4 shrink-0" style="color: var(--color-amber)">{key}</dt>
+        <dd style="color: var(--text-muted)">{v.blurb}</dd>
+      </div>
+    ))
+  }
+</dl>

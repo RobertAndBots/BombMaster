@@ -1,0 +1,221 @@
+@import 'tailwindcss';
+
+/* Dark is the default and the design's home — you study this alongside a game
+   played in a dim room, and the module renders below are recreations of
+   physical hardware that only read right against a dark chassis. Light is a
+   real second theme with its own values; the inline script in BaseLayout sets
+   the class before first paint so there is no flash. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans:
+    'InterVariable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+
+  /* Chassis — the dark palette, warmed slightly so the amber accent sits on
+     it rather than vibrating against a cold blue. */
+  --color-chassis-950: #0a0a0c;
+  --color-chassis-900: #0e0f12;
+  --color-chassis-850: #14151a;
+  --color-chassis-800: #1a1c22;
+  --color-chassis-700: #24262f;
+  --color-chassis-600: #32353f;
+  --color-chassis-500: #464a57;
+
+  /* Amber is the countdown timer. It is the one accent, used for anything
+     that means "this is the live thing on the page". */
+  --color-amber: #ffb340;
+  --color-amber-soft: #ffc76b;
+
+  /* Correct / strike. These are functional, never decorative — a drill uses
+     exactly these two to answer "did I get it right", so they must not also
+     show up as theming. */
+  --color-good: #47d18a;
+  --color-strike: #ff5a52;
+
+  /* Wire and button colours, straight off the modules. Defined once so the
+     wire renders, the button render and the prose all agree. */
+  --color-wire-black: #16171a;
+  --color-wire-blue: #2f6bff;
+  --color-wire-red: #e03131;
+  --color-wire-white: #f2f3f5;
+  --color-wire-yellow: #f2c53d;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: var(--color-chassis-900);
+  --bg-elev: var(--color-chassis-850);
+  --bg-elev-2: var(--color-chassis-800);
+  --border: var(--color-chassis-700);
+  --border-strong: var(--color-chassis-600);
+  --text: #e9eaee;
+  --text-muted: #9ba1ae;
+  --text-faint: #6d7382;
+  --glow: rgb(255 179 64 / 0.14);
+}
+
+:root:where(.light) {
+  color-scheme: light;
+  --bg: #fafaf9;
+  --bg-elev: #ffffff;
+  --bg-elev-2: #f3f3f1;
+  --border: #e4e4e1;
+  --border-strong: #d1d1cd;
+  --text: #17181c;
+  --text-muted: #585d68;
+  --text-faint: #838895;
+  --glow: rgb(255 179 64 / 0.1);
+}
+
+html {
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(255 179 64 / 0.26);
+}
+
+/* Every interactive element in a drill is keyboard-reachable, so the focus
+   ring is part of the design rather than something to suppress. The old site
+   used bare <div onClick>, which had no focus state at all. */
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ── Prose ────────────────────────────────────────────────────────────────
+   The study pages are MDX, so their body copy is plain markdown. These rules
+   are what make writing a page feel like writing, not like building a page. */
+
+.prose {
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.prose > * + * {
+  margin-top: 1.1em;
+}
+
+.prose h2 {
+  font-size: 1.35rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  margin-top: 2.5em;
+  margin-bottom: 0.2em;
+  scroll-margin-top: 5rem;
+}
+
+.prose h3 {
+  font-size: 1.05rem;
+  font-weight: 650;
+  margin-top: 1.8em;
+  margin-bottom: 0.1em;
+  scroll-margin-top: 5rem;
+}
+
+.prose h2 + *,
+.prose h3 + * {
+  margin-top: 0.4em;
+}
+
+.prose a {
+  color: var(--color-amber);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgb(255 179 64 / 0.4);
+}
+
+.prose a:hover {
+  text-decoration-color: var(--color-amber);
+}
+
+.prose strong {
+  font-weight: 650;
+  color: var(--text);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li::marker {
+  color: var(--text-faint);
+}
+
+.prose li + li {
+  margin-top: 0.35em;
+}
+
+.prose blockquote {
+  border-left: 2px solid var(--color-amber);
+  padding-left: 1em;
+  color: var(--text-muted);
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2.5em 0;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.925rem;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--border);
+  padding: 0.4em 0.6em;
+  text-align: left;
+}
+
+.prose th {
+  background: var(--bg-elev-2);
+  font-weight: 600;
+}
+
+/* Wide tables are the one thing that genuinely does not fit a phone. Scroll
+   them rather than shrinking the text to unreadable. */
+.prose .scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}

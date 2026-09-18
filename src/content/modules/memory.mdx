@@ -1,0 +1,69 @@
+---
+title: Memory
+summary: Five stages that refer back to each other. The table is small; holding the history is the hard part.
+manualPage: 11
+difficulty: medium
+order: 6
+hasDrill: true
+---
+
+import MemoryRules from '../../components/study/MemoryRules.astro'
+import MemoryDrill from '../../components/drills/MemoryDrill.tsx'
+
+Rules refer to a button by one of four things, and telling them apart is most of this module:
+
+- **P#** — position
+- **L4** — the button *labelled* "4"
+- **S#P** — the position you pressed at stage #
+- **S#L** — the label you pressed at stage #
+
+**D#** below means "the display shows #". Position and label are different lookups: the
+buttons reshuffle every stage, so "the same label as stage 2" is usually in a different place
+now.
+
+<MemoryRules />
+
+## Memorizing the table
+
+**Stage 1** is nearly free: displays 2, 3 and 4 map to the matching position. The only thing
+to remember is **display 1 → position 2**.
+
+**Stage 2** — displays 2 and 4 are the "easy" ones, because they both mean *the same position
+as stage 1*, which means you only have one position to carry forward. For the other two,
+remember **314**: display 3 → position 1, display 1 → label 4. Think of pi.
+
+**Stage 3** — remember **3-3-3**: stage 3, display 3, position 3. Then display 4 → label 4.
+The remaining two are the labels from stages 1 and 2, *switched*.
+
+**Stage 4** is mostly positions borrowed from earlier stages. Everything before display 2 is
+stage 1's position, everything after is stage 2's position, and display 2 → position 1.
+
+**Stage 5** is only labels. Each display points at the stage whose label you want — except 3
+and 4 are switched.
+
+## What you actually carry in your head
+
+This is the part the table doesn't tell you. During the module you need the **labels from
+stages 1-4** and the **positions from stages 1-2**. I hold that as three two-digit numbers:
+
+1. stage 1 position, stage 2 position
+2. stage 1 label, stage 2 label
+3. **stage 4** label, **stage 3** label
+
+Note the third is deliberately backwards. Stage 5 maps display 3 → stage 4's label and
+display 4 → stage 3's label, so storing them pre-swapped means I don't have to flip anything
+under time pressure. You might find a flat four-digit number easier — experiment.
+
+Two more things that cut the load:
+
+- At **stage 4**, the moment you've chosen your button you can forget both positions entirely
+  and hold only labels. Stage 5 never asks for a position.
+- At **stage 2**, if the display is 2 or 4 then stages 1 and 2 share a position, so there is
+  only one position to carry instead of two.
+
+## Practice
+
+The history is hidden by default below. That's the point — if you can see what you pressed,
+you're drilling the table, and the table isn't what fails.
+
+<MemoryDrill client:visible />

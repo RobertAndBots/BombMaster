@@ -1,0 +1,50 @@
+---
+title: Mazes
+summary: Nine 6x6 grids you have to memorize as pictures. Walk them with the walls hidden until you don't need them.
+manualPage: 15
+difficulty: medium
+order: 10
+hasDrill: true
+---
+
+import MazeTrainer from '../../components/drills/MazeTrainer.tsx'
+
+Mazes is the odd one out: there is no table and no mnemonic. There are nine layouts, the
+module shows you none of the walls, and you have to know which of the nine you're in from two
+circle markers and then navigate it blind.
+
+So this page is mostly a tool rather than an explanation.
+
+## How to actually learn them
+
+Reading the nine mazes off the manual does very little. What worked was **walking them with
+the walls hidden** and only revealing when I got stuck — the same way you learn a route by
+driving it rather than by looking at a map.
+
+The trainer below does that. Pick a maze, navigate to the target, and hit **Show walls** when
+you're lost. As you improve you'll find you're peeking at one or two corners of each maze
+rather than the whole thing, and those corners are the bit worth drilling.
+
+A few things that helped:
+
+- **Learn the circles first.** Identifying the maze is a separate skill from navigating it,
+  and it's much easier — nine pairs of dots. Get that instant, then worry about walls.
+- **Learn the edges and the middle separately.** Most of these mazes have an obvious
+  perimeter route and a messy centre. The perimeter is cheap to learn and often enough.
+- **Walking into a wall is free here.** The bump flashes red and costs you nothing but a tick
+  on the counter, which is exactly the feedback you want while learning. It is not free in
+  game.
+
+## Trainer
+
+Click the board first, then use the arrow keys or WASD. **Space** toggles the walls. On a
+phone, use the arrows below the grid.
+
+<MazeTrainer client:visible mode="study" />
+
+## Practice
+
+Same thing, but the maze is random and the target is one the game actually uses — so you have
+to identify the layout from the circles before you can start moving.
+
+<MazeTrainer client:visible mode="drill" />

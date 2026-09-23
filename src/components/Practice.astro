@@ -1,0 +1,21 @@
+---
+import SimpleWiresDrill from './drills/SimpleWiresDrill.tsx'
+import ButtonDrill from './drills/ButtonDrill.tsx'
+import KeypadsDrill from './drills/KeypadsDrill.tsx'
+import WhosOnFirstDrill from './drills/WhosOnFirstDrill.tsx'
+import MemoryDrill from './drills/MemoryDrill.tsx'
+import MazeTrainer from './drills/MazeTrainer.tsx'
+
+// The Practice tab for each module. Every drill is imported and named here
+// because Astro can only hydrate a component it can see statically. They are
+// client:visible, so a drill's JavaScript loads the first time its tab opens.
+type Props = { slug: string }
+const { slug } = Astro.props
+---
+
+{slug === 'simple-wires' && <SimpleWiresDrill client:visible />}
+{slug === 'the-button' && <ButtonDrill client:visible />}
+{slug === 'keypads' && <KeypadsDrill client:visible />}
+{slug === 'whos-on-first' && <WhosOnFirstDrill client:visible />}
+{slug === 'memory' && <MemoryDrill client:visible />}
+{slug === 'mazes' && <MazeTrainer client:visible mode="drill" />}

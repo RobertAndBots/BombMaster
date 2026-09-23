@@ -1,15 +1,15 @@
 ---
 title: Who's on First
-summary: The hardest one. 28 display words to place and 28 priority lists to recite — but you only need nine words of each.
 manualPage: 9
-difficulty: hard
 order: 5
 hasDrill: true
 ---
 
 import WhosOnFirstStep1 from '../../components/study/WhosOnFirstStep1.astro'
 import WhosOnFirstStep2 from '../../components/study/WhosOnFirstStep2.astro'
-import WhosOnFirstDrill from '../../components/drills/WhosOnFirstDrill.tsx'
+import WhosOnFirstGrid from '../../components/study/WhosOnFirstGrid.astro'
+
+export const empty = '<   >'
 
 export const group1Sentences = {
   Ready: 'Ready? Yes. Okay what makes little people right? Be ready.',
@@ -31,7 +31,7 @@ export const group1Sentences = {
 export const group2Sentences = {
   You: 'You sure? Are your "you\'re next"\'s hu-urt hot water',
   'You are': 'You are your next live hundred weapons d-uh hold you',
-  Your: 'Your [uh are huh]. (your). — think of an "uh" sandwich',
+  Your: 'Your [uh are huh]. (your). | Think of a uh sandwich',
   "You're": "You're you. (you're)",
   UR: 'UR-DU (ur)',
   U: "1(U) hundred sacrifices narrate when you're urging under duress",
@@ -42,66 +42,65 @@ export const group2Sentences = {
   Next: "Next what's hu-uh. Your hold sucks. (next)",
   Hold: "Holds are 1(u) & done under you 2(ur) soup water 5(you're)",
   Sure: "SAD (sure, are, done) -ly you're you. Holds hu-urt. (sure)",
-  Like: 'Like you\'re nice 1(u) 2(ur) happy dance [uh what huh]',
+  Like: "Like you're nice 1(u) 2(ur) happy dance [uh what huh]",
 }
 
-This is the module that takes real time, and the one most people give up on. Do it last.
+## Step 1
 
-Two steps: the display tells you which button to **read**, and that button's label tells you
-which button to **press**. The words are chosen to be maximally confusable — "LEAD", "LED"
-and "LEED" all appear and all point somewhere different.
-
-## Step 1 — which button to read
+Here are the lists of words sorted by position. Note that {empty} signifies when the display
+does not show a word.
 
 <WhosOnFirstStep1 />
 
-Twenty-eight words to place into six positions. Grouping the ones that look alike is what
-makes it tractable:
+To memorize them, I grouped similar words together and created some rules:
 
-1. **The one-offs and the near-homophones.** *UR* is Top Left, alone. *C / First / Okay* are
-   Top Right. *Yes / Led / Nothing* are Middle Left. Then the sound-alike families: *eed*
-   (Leed, Reed) is Bottom Left, and *red* (Red, Read) plus the no-space *you* words (You,
-   Your, You're — but **not** "You are") are Middle Right.
-2. **They are / Their / They're form a triangle** — They are and Their side by side, They're
-   below the left one. Add *There* in Bottom Right and it becomes a square.
-3. **The blanks.** *Blank* and the empty display sit diagonally: Blank in Middle Right, the
-   empty display in Bottom Left.
-4. **Everything else is Bottom Right.** It is the biggest bucket, so make it your default and
-   only learn the exceptions.
+1. <WhosOnFirstGrid cells={['UR', 'CFO', 'Yes, Led, Nothing', 'red, you', 'eed', '']} />
 
-## Step 2 — which button to press
+   **Bottom Left:** eed → Leed/Reed
 
-The 28 button labels split into **two groups of 14**, and a module only ever draws from one
-of them. So recognising a single word tells you which 14 you are working with — that alone
-halves the problem.
+   **Middle Right:** red → Red/Read, and you (no spaces) → You/Your/You're (**not** You are)
 
-You also never need the whole list. **At most the first nine words**, and you can stop as
-soon as you reach the label's own word, because the label is always one of the six buttons.
-(That is not a rule of thumb — six buttons out of fourteen words means the first nine can
-never all miss. I checked every legal module against it.)
+2. They are/Their/They're form a triangle:
 
-For each list I made a sentence whose words' first letters spell the priority order, starting
-with the step-1 label itself. Where a letter is ambiguous — no/nothing, ready/right,
-wait/what — I used the actual word or something that sounds like it.
+   <WhosOnFirstGrid highlight cells={['', '', 'They are', 'Their', "They're", '']} />
+
+   You can optionally add **There** and make it a square since it's in Bottom Right.
+
+3. The "blanks" (Blank/{empty}):
+
+   <WhosOnFirstGrid highlight cells={['', '', '', 'Blank', empty, '']} />
+
+4. Everything else is Bottom Right
+
+## Step 2
+
+There are 28 words that can be split in half into two groups. The word lists for each group of
+14 only pull from those 14 words.
+
+Also remember that you only have to memorize [at most the first 9
+words](https://www.reddit.com/r/ktane/comments/3uirhw/update_on_whos_on_first_memorization_rediscovery/cxgaatu/)
+in a word list, and you can also stop when you see the step 1 word itself (For example, for
+Left only memorize Right, Left).
 
 ### Group 1
 
-<WhosOnFirstStep2 group={1} sentences={group1Sentences} />
+<WhosOnFirstStep2 group={1} sentences={group1Sentences}>
+
+For each word list, I made a sentence where the first letter of each word corresponds to the
+first letter of the word to press. The first word of the sentence corresponds to the label from
+step 1. For no/nothing, ready/right, and wait/what, I tried to use the actual word or a similar
+sounding word in the sentence since it could be ambiguous which one I'm referring to. I
+recommend coming up with sentences that are the easiest for you to memorize, here are the ones
+I use:
+
+</WhosOnFirstStep2>
 
 ### Group 2
 
-Group 2 is harder to write sentences for: four words start with **U** and four with **Y**, so
-first letters alone don't disambiguate. I fell back on numbering them by position in the
-alphabetised list — 1(u), 2(ur), 5(you're) — and on bracketed clusters where the order inside
-doesn't matter for the words on the module. These are uglier than group 1 and that is
-honestly just how it went.
+<WhosOnFirstStep2 group={2} sentences={group2Sentences}>
 
-<WhosOnFirstStep2 group={2} sentences={group2Sentences} />
+For group 2, it is a little more challenging to come up with sentences since there are four
+words that start with U and four words that start with Y. The other 6 words start with
+different letters, so we have more freedom when choosing words to represent those words.
 
-## Practice
-
-Drill the two steps separately before you put them together. They fail for different reasons:
-step 1 is a lookup of near-identical words, step 2 is recall of a list. Mixing them from the
-start means you can't tell which half is letting you down.
-
-<WhosOnFirstDrill client:visible />
+</WhosOnFirstStep2>

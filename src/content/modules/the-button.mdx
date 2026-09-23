@@ -1,28 +1,28 @@
 ---
 title: The Button
-summary: Six conditions in order, and the actions alternate. One sentence covers the whole module.
 manualPage: 6
-difficulty: easy
 order: 2
 hasDrill: true
 ---
 
-import ButtonDrill from '../../components/drills/ButtonDrill.tsx'
+<div class="scroll-x">
 
-The pieces: five button colours (black, blue, red, white, yellow), four labels (Abort,
-Detonate, Hold, Press) and four strip colours (blue, red, white, yellow).
+| Button colors | Strip colors | Labels |
+| --- | --- | --- |
+| Black | Blue | Abort |
+| Blue | Red | Detonate |
+| Red | White | Hold |
+| White | Yellow | Press |
+| Yellow | | |
 
-As with [Simple Wires](/modules/simple-wires/), memorize the **actions** and the
-**conditions** separately.
+</div>
+
+Similar to simple wires, I recommend memorizing the actions and conditions separately.
 
 ## Actions
 
-The actions alternate, starting with hold:
-
-> hold, press, hold, press, hold, press, hold
-
-That's it. That's the entire action table. If you know which condition fired, you know
-whether to hold by whether its number is odd.
+To memorize the actions, just remember that the actions alternate between hold and
+press/immediately release, starting with hold.
 
 ## Conditions
 
@@ -33,38 +33,25 @@ whether to hold by whether its number is odd.
 5. Yellow
 6. Red, Hold
 
-The mnemonic I use is just the list said out loud:
+I recommend coming up with a mnemonic to memorize the conditions. I memorized:
 
 > **"Blue abort, 2 det, white car, 3 FRK, yellow, red hold"**
 
-After enough repetitions you won't need a hook for it, but early on I pictured a car blowing
-up for "det white car", and remembered that after **2** you skip a number and land on **3**.
-And **FRK is three letters**, which pins it to the 3.
+After saying it enough times you won't need any tricks to remember it, but at the beginning I
+imagined a car blowing up for "det white car", and remembered that after 2, you skip a
+condition and now you're at 3. And for "3 FRK", FRK is three letters.
 
-## Releasing
+## Color Strips
 
-If you're holding, a strip lights up and you release when the timer shows a particular digit
-in any position:
+Remember:
 
-- **Blue = 4**
-- **Yellow = 5**
-- **Everything else = 1**
+1. Blue = 4
+2. Yellow = 5
+3. Other = 1
 
-Two facts and a default.
+## Shortcuts
 
-## The shortcut worth having
-
-Conditions 2, 4 and 6 are the press-and-release ones, and two of the three need batteries.
-So: **if the bomb has fewer than two batteries, the only thing you have to check is whether
-the button is a red "Hold".** If it is, press and release. If not, hold. You can skip the
-entire table.
-
-Glance at the batteries first and most modules resolve before you've read the label.
-
-## Practice
-
-The batteries and indicators start hidden below, and that's deliberate — on a real bomb they
-are on a different face, so you have to know you need them before you go looking. A drill
-that showed you everything up front would train the wrong reflex.
-
-<ButtonDrill client:visible />
+Conditions 2, 4, and 6 result in pressing and immediately releasing the button, while the
+others result in holding. If you see that there are less than two batteries on the bomb, the
+only thing you have to check is if the button is "Red Hold". If yes, press/immediately
+release; otherwise hold.

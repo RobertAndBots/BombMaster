@@ -1,69 +1,59 @@
 ---
 title: Memory
-summary: Five stages that refer back to each other. The table is small; holding the history is the hard part.
 manualPage: 11
-difficulty: medium
 order: 6
 hasDrill: true
 ---
 
 import MemoryRules from '../../components/study/MemoryRules.astro'
-import MemoryDrill from '../../components/drills/MemoryDrill.tsx'
 
-Rules refer to a button by one of four things, and telling them apart is most of this module:
+For Memory, the rules can refer to buttons by:
 
-- **P#** — position
-- **L4** — the button *labelled* "4"
-- **S#P** — the position you pressed at stage #
-- **S#L** — the label you pressed at stage #
+1. (P#) Position
+2. (L4) Label = "4"
+3. (S#P) Stage 1 & 2 position
+4. (S#L) Stage 1-4 label
 
-**D#** below means "the display shows #". Position and label are different lookups: the
-buttons reshuffle every stage, so "the same label as stage 2" is usually in a different place
-now.
+D# = "display is #"
 
 <MemoryRules />
 
-## Memorizing the table
+## Memorizing
 
-**Stage 1** is nearly free: displays 2, 3 and 4 map to the matching position. The only thing
-to remember is **display 1 → position 2**.
+Stage 1 is pretty straightforward to memorize since display 2-4 → position 2-4. You just need
+to remember display 1 → position 2.
 
-**Stage 2** — displays 2 and 4 are the "easy" ones, because they both mean *the same position
-as stage 1*, which means you only have one position to carry forward. For the other two,
-remember **314**: display 3 → position 1, display 1 → label 4. Think of pi.
+For stage 2, I remember displays 2 and 4 as the "easy" displays since it makes the in-game
+memorizing easier as there is now only one position to memorize (since stages 1 and 2 will
+have the same position). For displays 3 and 1, I remember 314: display 3 → position 1,
+display 1 → label 4. You can remember this by thinking of pi: 3.14.
 
-**Stage 3** — remember **3-3-3**: stage 3, display 3, position 3. Then display 4 → label 4.
-The remaining two are the labels from stages 1 and 2, *switched*.
+For stage 3, I remember 3-3-3: stage 3, display 3, position 3. You can then remember display 4,
+label 4. Then displays 1 and 2 are the labels from 1 and 2, just switched.
 
-**Stage 4** is mostly positions borrowed from earlier stages. Everything before display 2 is
-stage 1's position, everything after is stage 2's position, and display 2 → position 1.
+I remember stage 4 as mostly positions from other stages. Everything before display 2 is
+stage 1 position, everything after is stage 2 position, and display 2 → position 1.
 
-**Stage 5** is only labels. Each display points at the stage whose label you want — except 3
-and 4 are switched.
+Stage 5 is only labels from other stages. Each display corresponds to which stage the label is
+from, except 3 and 4 are switched
 
-## What you actually carry in your head
+## In-game Memory
 
-This is the part the table doesn't tell you. During the module you need the **labels from
-stages 1-4** and the **positions from stages 1-2**. I hold that as three two-digit numbers:
+When you're defusing this module in-game, you need to remember the labels for stages 1-4 and
+the positions for stages 1-2. I remember this as three 2-digit numbers:
 
-1. stage 1 position, stage 2 position
-2. stage 1 label, stage 2 label
-3. **stage 4** label, **stage 3** label
+1. Stage 1 position, stage 2 position
+2. Stage 1 label, stage 2 label
+3. Stage 4 label, stage 3 label
 
-Note the third is deliberately backwards. Stage 5 maps display 3 → stage 4's label and
-display 4 → stage 3's label, so storing them pre-swapped means I don't have to flip anything
-under time pressure. You might find a flat four-digit number easier — experiment.
+Notice that for the third number I put stage 4 before stage 3. This makes stage 5 easier for
+me so I don't have to flip the labels after the display shows. For you it might be easier to
+remember all the labels individually or as a 4-digit number. Experiment and see what works
+best for you.
 
-Two more things that cut the load:
+In stage 4, once you decide the position of the button to click, you can immediately forget
+about stage 1 and 2 positions and just focus on the labels of the previous stages, so you can
+complete stage 5 as fast as possible.
 
-- At **stage 4**, the moment you've chosen your button you can forget both positions entirely
-  and hold only labels. Stage 5 never asks for a position.
-- At **stage 2**, if the display is 2 or 4 then stages 1 and 2 share a position, so there is
-  only one position to carry instead of two.
-
-## Practice
-
-The history is hidden by default below. That's the point — if you can see what you pressed,
-you're drilling the table, and the table isn't what fails.
-
-<MemoryDrill client:visible />
+In stage 2, if you get display 2 or 4, you only have to remember one position since stage 1
+and 2 will have the same position.

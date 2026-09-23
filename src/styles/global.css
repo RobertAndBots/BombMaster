@@ -101,6 +101,39 @@ body {
   border-radius: 3px;
 }
 
+/* ── Learn | Practice ─────────────────────────────────────────────────────
+   One full-width segmented bar at the top of a module page with a drill. */
+
+.tabs {
+  display: flex;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabs [role='tab'] {
+  flex: 1;
+  height: 46px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-elev);
+  cursor: pointer;
+  transition: background-color 120ms, color 120ms;
+}
+
+.tabs [role='tab'] + [role='tab'] {
+  border-left: 1px solid var(--border-strong);
+}
+
+.tabs [role='tab']:hover {
+  color: var(--text);
+}
+
+.tabs [role='tab'][aria-selected='true'] {
+  color: var(--color-chassis-950);
+  background: var(--color-amber);
+}
+
 /* ── Prose ────────────────────────────────────────────────────────────────
    The study pages are MDX, so their body copy is plain markdown. These rules
    are what make writing a page feel like writing, not like building a page. */

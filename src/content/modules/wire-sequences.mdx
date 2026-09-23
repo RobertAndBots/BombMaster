@@ -1,38 +1,46 @@
 ---
 title: Wire Sequences
-summary: Twenty-seven rows across three colours. Chunk each column into threes and count out loud between panels.
 manualPage: 14
-difficulty: hard
 order: 9
 hasDrill: false
 ---
 
-import WireSequenceTable from '../../components/study/WireSequenceTable.astro'
+## Memorizing
 
-Nine rows per colour, and occurrences are **cumulative across every panel** in the module —
-so the real difficulty isn't the table, it's keeping three running counts while panels scroll
-past.
+For wire sequences, I split up each table into chunks to make it easier to memorize.
 
-<WireSequenceTable />
+### Red
 
-## Observations that hold the table together
+- **C, B, A**: Pretty straightforward.
+- **AC, B, AC**: A sandwich, the reverse of the first part of blue.
+- **ABC, AB, B**: I remember that the last row is **B** and we need to get there from the 6th
+  row only changing one letter at a time. So from **AC** we add **B**, then remove **C**, and
+  finally remove **A**.
 
-Three facts cut the memorization down a lot:
+### Blue
 
-- **Row 5 is B for every colour.** One row, free.
-- **Blue and black share rows 2 and 3. Red and black share rows 4 and 5.** Black is the
-  bridge between the other two.
-- **The last row differs for each colour: B, A, C.** A clean anchor at the bottom.
+- **B, AC, B**: A sandwich, you can remember that the outsides are **B** and the inside is
+  everything except **B**.
+- **A, B, BC, C**: I remember **ABC** except you have **BC** between **B** and **C**.
+- **AC, A**: I remember that the last row is **A** and we need to get there from the 7th row
+  only changing one letter at a time. So from **C** we add **A**, then remove **C**.
 
-## Counting between panels
+### Black
 
-This is the part that actually decides whether you solve the module. I keep three numbers —
-occurrences of red, blue, black, always in that order — and **say them out loud after every
-panel**, while the next one is loading.
+- **ABC**: First one is anything.
+- **AC, B, AC, B**: Remember that it's **AC, B** twice.
+- **BC, AB, C, C**: I remember that there were two options for Calc, **BC** and **AB**, and you
+  get a **C** in both of them.
 
-So if the first panel shows blue, red, blue and you click next, say "**1, 2, 0**" into the
-dead time. It feels silly. It is also the difference between solving this module and
-restarting your count three panels in, because there is nothing on screen that tells you what
-you've already seen.
+### Observations
 
-Say them even when a panel had no wires. The rhythm is what keeps the count alive.
+- The 5th row across all colors is only **B**.
+- Blue and Black share rows 2 and 3 while Red and Black share rows 4 and 5.
+- The last row for each color is different: **B, A, C**
+
+## In-game Memory
+
+In game, I keep track of the number of occurrences of each color by saying three numbers after
+each panel. I like to say them in the order that I memorized the colors: Red, Blue, Black. So if
+you see Blue, Red, Blue in the first panel and click next, say 1, 2, 0 while the next panel is
+loading.

@@ -12,7 +12,7 @@ const list = show === 'unique' ? uniqueSymbols() : show === 'shared' ? sharedSym
     <div class="not-prose my-4 space-y-4">
       {SETS.map((set, i) => (
         <div>
-          <h4 class="text-sm font-semibold mb-1.5">Column {i + 1}</h4>
+          <h4 class="text-sm font-semibold mb-1.5">Set {i + 1}</h4>
           <div class="scroll-x">
             <div class="flex gap-2 pb-1">
               {set.symbols.map((symbol, j) => (

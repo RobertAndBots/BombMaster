@@ -1,0 +1,27 @@
+---
+// A 2x3 picture of the module's display positions, for the Step 1 grouping
+// tricks. Cells are listed top-left to bottom-right; `highlight` shades the
+// ones that make a shape (the triangle, the blanks).
+type Props = { cells: string[]; highlight?: boolean }
+const { cells, highlight = false } = Astro.props
+const rows = [cells.slice(0, 2), cells.slice(2, 4), cells.slice(4, 6)]
+---
+
+<table class="not-prose my-2 border-collapse text-sm" style="width: auto">
+  <tbody>
+    {
+      rows.map((row) => (
+        <tr>
+          {row.map((cell) => (
+            <td
+              class="h-8 min-w-20 border px-2 text-center font-semibold"
+              style={`border-color: var(--border-strong);${highlight && cell ? ' background: var(--bg-elev-2); color: var(--color-amber)' : ''}`}
+            >
+              {cell}
+            </td>
+          ))}
+        </tr>
+      ))
+    }
+  </tbody>
+</table>

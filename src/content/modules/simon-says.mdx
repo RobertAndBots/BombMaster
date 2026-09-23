@@ -1,42 +1,34 @@
 ---
 title: Simon Says
-summary: Six colour mappings keyed on a vowel and your strike count. Learn the two zero-strike ones first.
 manualPage: 8
-difficulty: easy
 order: 4
 hasDrill: false
 ---
 
-import SimonMappings from '../../components/study/SimonMappings.astro'
+For simon says, the color mapping depends on how many strikes you have and whether or not
+there's a vowel in the serial number. Starting out you really only have to memorize the two
+mappings for when there are no strikes.
 
-The colour you press depends on two things: whether the serial number contains a **vowel**,
-and how many **strikes** you already have. Six tables in all.
+## Vowel, No Strikes
 
-Starting out you really only need the two no-strike mappings. If you have a strike you
-already have bigger problems, and you can look those two up.
+Red and Blue are flipped<br />
+Green and Yellow are flipped
 
-<SimonMappings />
+## No Vowel, No Strikes
 
-## How I hold each one
+Red, Blue, and Yellow rotate<br />
+Green is Green
 
-- **Vowel, no strikes** — red and blue swap; green and yellow swap.
-- **No vowel, no strikes** — red, blue and yellow rotate (R→B→Y→R); green stays green.
-- **No vowel, 1 strike** — red stays red and blue stays blue; green and yellow swap.
-- **Vowel, 1 strike** *and* **no vowel, 2 strikes** — the same table: red and yellow swap,
-  blue and green swap.
-- **Vowel, 2 strikes** — rotate counter-clockwise around the module's own layout.
+## No Vowel, 1 Strike
 
-The one genuinely useful structural fact is that **vowel + 1 strike and no-vowel + 2 strikes
-are identical**, so six tables is really five.
+Green and Yellow are flipped<br />
+Red is Red, Blue is Blue
 
-> **Correction, September 2026.** An earlier version of this page said the no-vowel,
-> one-strike mapping was a three-way rotation of blue, yellow and green with red fixed. That
-> is wrong — the manual has red *and* blue both fixed, with only green and yellow swapping.
-> If you learned it from this page before now, that is the one to re-check. There is now a
-> test pinning every mapping to the manual so it cannot drift again.
+## Vowel, 1 Strike & No Vowel, 2 Strikes
 
-## In game
+Red and Yellow are flipped<br />
+Blue and Green are flipped
 
-Say the mapping out loud once before you start pressing. The sequence lengthens by one each
-round and replays from the beginning, so a wrong mapping does not cost you one press — it
-costs you the whole module, repeatedly, until someone notices.
+## Vowel, 2 Strikes
+
+Rotate counter-clockwise

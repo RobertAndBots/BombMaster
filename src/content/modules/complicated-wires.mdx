@@ -1,8 +1,6 @@
 ---
 title: Complicated Wires
-summary: The manual's Venn diagram flattened into a 4x4 chart, then grouped by instruction.
 manualPage: 13
-difficulty: hard
 order: 8
 hasDrill: false
 ---
@@ -10,48 +8,47 @@ hasDrill: false
 import ComplicatedWiresChart from '../../components/study/ComplicatedWiresChart.astro'
 import CutGroups from '../../components/study/CutGroups.astro'
 
-The manual gives you a four-set Venn diagram. It is correct and it is unusable under time
-pressure — you end up tracing overlaps with a finger while someone counts down.
-
-It's really a 4x4 table: wire colouring down the side, LED and ★ across the top.
+Here is a chart that simplifies the Venn diagram from the manual.
 
 <ComplicatedWiresChart />
 
-## Group by instruction, not by wire
-
-Reading the chart row by row means memorizing sixteen cells. Grouping by the *answer* means
-memorizing five short lists, and it matches how the question arrives in game — you're looking
-at one wire and want one answer.
+## Wires
 
 <CutGroups />
 
-## How I hold each group
+## Memorizing Rules
 
-**Cut and Don't Cut** are mostly straight memorization, but there's one pairing that sticks:
+### Cut & Don't Cut
 
-> Red Star = **Cut**, Blue Star = **Don't cut**
+It's pretty much just straight memorization, but the two wires that can be memorized together
+are
 
-Beyond that, make sure White and White Star are both cut. The Don't-Cuts matter less than
-they look — if no rule applies you shouldn't be cutting anyway — but the memorable one is
-**don't cut when everything is true** (LED Red Blue Star).
+> Red Star = Cut<br />
+> Blue Star = Don't Cut
 
-**Serial Even** covers wires 1-3: cut when the colour is not white (red, blue, or both) and
-there is no LED and no star. The fourth is covered by the Red Blue rule below.
+Other than that make sure you memorize that White and White Star are cut. It's not as important
+to memorize the other Don't Cuts since you shouldn't cut a wire if none of the other rules
+apply, but another easy one to memorize is don't cut when everything is true (LED Red Blue
+Star).
 
-**Red Blue** is the one that needs its own thought. From Serial Even you already know to cut
-a Red Blue wire on an even serial. If the **LED is on** with no star, still serial-even.
-If there's a **star** with no LED, it becomes parallel port instead.
+### Serial Even
 
-**Parallel Port and Batteries** are easiest learned together. Both require the **LED on**;
-the star is optional either way. Then:
+This rule applies for wires 1-3. Cut when the color is not white (red, blue, or both) and there
+is no LED and no star. The Red Blue rule covers the 4th wire.
 
-> Blue = **Parallel Port**, Red = **Batteries**
+### Red Blue
 
-That covers wires 1-2 of each. Wire 3 of Parallel Port is already handled by the Red Blue
-rule, and wire 3 of Batteries is a genuine exception you just have to know.
+From the Serial Even rule we know to cut the Red Blue wire if the serial is even. If the LED is
+on (with no Star), still cut if the serial is even. Otherwise if there is a Star (with no LED),
+cut if there's a parallel port.
 
-## In game
+### Parallel Port & Batteries
 
-Call out the wire as three facts in a fixed order — colour, LED, star — before you look
-anything up. "Red, no LED, star." Saying them in the same order every time is what stops you
-from missing the star on the one wire where it flips the answer.
+I found it easiest to memorize these together. For this rule, the LED must be on and the Star
+is optional. Just remember:
+
+> Blue = Parallel Port<br />
+> Red = Batteries
+
+This covers wires 1-2 for Parallel Port and Batteries. Wire 3 of Parallel Port is covered by
+the Red Blue rule, and wire 3 of Batteries is an exception that must be memorized.
